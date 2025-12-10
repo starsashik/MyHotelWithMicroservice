@@ -1,0 +1,47 @@
+/*admin-page and users-page*/
+/*_____________________________________________________________*/
+.bookings-page{
+    max-width: 1180px;
+    margin: 3rem auto 2.5rem;
+    padding: 0 8px;
+    text-align: left;
+}
+
+.bookings-page li{
+    list-style-type: none;
+    margin-top: 1rem;
+}
+
+.bookings-page h1{
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+}
+
+.bookings-page .err-message{
+    color: var(--primary);
+    text-align: left;
+    font-weight: 300;
+    font-size: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: auto;
+}
+
+.bookings-page .text{
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.bookings-page .btn-registration{
+    color: var(--primary);
+    text-decoration: underline !important;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/*_____________________________________________________________*/

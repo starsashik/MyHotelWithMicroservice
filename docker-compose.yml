@@ -1,0 +1,109 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: postgres
+    ports:
+      - "5454:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  auth_service:
+    build:
+      context: ./hotel-backend
+      dockerfile: Dockerfile
+    working_dir: /app/auth_service
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    environment:
+      AUTH_DATABASE_URL: postgresql+asyncpg://postgres:admin@postgres:5432/auth_db
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_QUEUE: logs_queue
+      JWT_SECRET: super-secret-change-me
+      DEBUG: "false"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  booking_service:
+    build:
+      context: ./hotel-backend
+      dockerfile: Dockerfile
+    working_dir: /app/booking_service
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8001
+    environment:
+      BOOKING_DATABASE_URL: postgresql+asyncpg://postgres:admin@postgres:5432/booking_db
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_QUEUE: logs_queue
+      JWT_SECRET: super-secret-change-me
+      DEBUG: "false"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+
+  logging_service:
+    build:
+      context: ./hotel-backend
+      dockerfile: Dockerfile
+    working_dir: /app/logging_service
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8002
+    environment:
+      LOGGING_DATABASE_URL: postgresql+asyncpg://postgres:admin@postgres:5432/logging_db
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_QUEUE: logs_queue
+      DEBUG: "false"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "8002:8002"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./hotel-frontend
+      dockerfile: Dockerfile.dev
+    environment:
+      VITE_AUTH_API: http://localhost:8000
+      VITE_BOOKING_API: http://localhost:8001
+      VITE_LOG_API: http://localhost:8002
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth_service
+      - booking_service
+      - logging_service
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+

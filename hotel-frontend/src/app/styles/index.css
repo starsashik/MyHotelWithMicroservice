@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #bc001e;
+    --primary-dark: #a0001a;
+    --text: #1f2933;
+    --muted: #6b7280;
+    --surface: #ffffff;
+    --background: #f6f7fb;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --radius: 14px;
+}
+
+/*Body*/
+/*_____________________________________________________________*/
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+}
+/*_____________________________________________________________*/
+
+/*Layout*/
+/*_____________________________________________________________*/
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layout__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px 0 0;
+    padding: 0 24px 48px;
+}
+/*_____________________________________________________________*/
+
+/*wrapper*/
+/*_____________________________________________________________*/
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 85vh;
+    margin: 0 auto;
+    padding: 24px 24px 48px;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+/*_____________________________________________________________*/
+
+/*header*/
+/*_____________________________________________________________*/
+header {
+    position: relative;
+    padding: 18px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid #ececf1;
+    box-shadow: var(--shadow);
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+header .logo {
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--primary);
+    cursor: pointer;
+    transition: color 300ms ease;
+}
+
+header .logo:hover {
+    color: var(--primary-dark);
+}
+
+header ul.nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+header ul.nav li {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--muted);
+    transition: color 300ms ease, transform 300ms ease;
+}
+
+header ul.nav li:hover {
+    color: var(--primary);
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+header .admin-mode-warn {
+    position: absolute;
+    margin: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -15px;
+    background: #ff3f3f;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(96, 96, 96, 0.3);
+    z-index: 1000;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 300ms ease;
+}
+
+header .admin-mode-warn:hover {
+    transform: translateX(-50%) scale(1.02);
+}
+
+header .admin-mode-warn p {
+    text-align: center;
+    font-weight: 300;
+    font-size: 14px;
+    color: #fff;
+}
+/*_____________________________________________________________*/
+
+/*start-banner*/
+/*_____________________________________________________________*/
+.start-banner {
+    position: relative;
+    width: 100%;
+    max-width: 1180px;
+    margin: 16px auto 32px;
+    height: 0;
+    padding-top: 45%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../../img/1920x.png") no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.start-banner .text-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.start-banner .text-container h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    animation: fadeInRight 1.5s ease-out;
+}
+
+.start-banner .text-container p {
+    font-size: 24px;
+    font-weight: 300;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    animation: fadeInRight 2s ease-out 0.5s;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0pX);
+    }
+}
+
+.start-banner .go-to-get-order {
+    background: var(--primary);
+    border-radius: 25px;
+    padding: 30px 20px;
+    cursor: pointer;
+    border: 3px solid var(--primary);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: all 300ms ease;
+    animation: fadeInRight 2.5s ease-out 1s;
+}
+
+.start-banner .go-to-get-order:hover {
+    background: #fff;
+    color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.start-banner .go-to-get-order h2 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+}
+/*_____________________________________________________________*/
+
+/*footer*/
+/*_____________________________________________________________*/
+footer {
+    text-align: center;
+    margin: 50px 0;
+    padding: 20px 50px;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--muted);
+    background: var(--surface);
+    border-top: 1px solid #eee;
+}
+/*_____________________________________________________________*/
+
+/*Button*/
+/*_____________________________________________________________*/
+.update-button {
+    padding: 12px 16px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Кнопка занимает всю ширину формы */
+}
+
+.update-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.delete-button {
+    padding: 12px 16px;
+    background-color: firebrick;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Кнопка занимает всю ширину формы */
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+/*_____________________________________________________________*/

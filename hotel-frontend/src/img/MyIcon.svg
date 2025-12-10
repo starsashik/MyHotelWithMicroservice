@@ -1,0 +1,13 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <!-- Основное здание -->
+    <rect x="6" y="8" width="20" height="18" rx="2" fill="#bc001e"/>
+    <!-- Крыша -->
+    <polygon points="4,8 16,2 28,8" fill="#a0001a"/>
+    <!-- Дверь -->
+    <rect x="14" y="18" width="4" height="8" fill="#fff"/>
+    <!-- Окна -->
+    <rect x="8" y="12" width="4" height="4" fill="#fff"/>
+    <rect x="20" y="12" width="4" height="4" fill="#fff"/>
+    <!-- Ручка двери -->
+    <circle cx="17" cy="22" r="0.5" fill="#bc001e"/>
+</svg>

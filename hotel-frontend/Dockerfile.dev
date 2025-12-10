@@ -1,0 +1,24 @@
+# Используем официальный Node.js образ
+FROM node:18
+
+# Рабочая директория внутри контейнера
+WORKDIR /app
+
+# Копируем package.json и package-lock.json
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm ci
+
+# Копируем весь проект в контейнер
+COPY . .
+
+# Переменные окружения
+ENV HOST=0.0.0.0
+ENV CHOKIDAR_USEPOLLING=true
+
+# Пробрасываем порт фронта
+EXPOSE 3000
+
+# Команда запуска Vite на 0.0.0.0 и порту 3000 (соответствует EXPOSE и compose)
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]

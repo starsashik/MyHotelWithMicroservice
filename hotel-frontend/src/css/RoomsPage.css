@@ -1,0 +1,109 @@
+/*admin-page and users-page*/
+/*_____________________________________________________________*/
+.rooms-page{
+    max-width: 1180px;
+    margin: 3rem auto 2.5rem;
+    padding: 0 8px;
+    text-align: left;
+}
+
+.rooms-page li{
+    list-style-type: none;
+    margin-top: 1rem;
+}
+
+.rooms-page h1{
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+}
+
+
+.rooms-page .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Равномерные отступы между элементами формы */
+    background-color: var(--surface);
+    padding: 22px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.rooms-page .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 5px; /* Отступ между меткой и полем */
+}
+
+.rooms-page .form-group label {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 0; /* Убираем лишний отступ */
+}
+
+.rooms-page .form-group input[type="text"],
+.rooms-page .form-group input[type="password"],
+.rooms-page .form-group input[type="file"],
+.rooms-page .form-group input[type="number"],
+.rooms-page .form-group input[type="date"]{
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* Плавное изменение границы при фокусе */
+}
+
+.rooms-page .form-group input[type="text"]:focus,
+.rooms-page .form-group input[type="password"]:focus,
+.rooms-page .form-group input[type="file"]:focus,
+.rooms-page .form-group input[type="number"]:focus,
+.rooms-page .form-group input[type="date"]:focus{
+    border-color: var(--primary);
+    outline: none;
+}
+
+.rooms-page .form-group img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.rooms-page .update-button {
+    padding: 12px 16px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%; /* Кнопка занимает всю ширину формы */
+}
+
+.rooms-page .update-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.rooms-page .err-message{
+    color: var(--primary);
+    text-align: left;
+    font-weight: 300;
+    font-size: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: auto;
+}
+
+
+/*_____________________________________________________________*/
